@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="tabela-previsao.css">
+
     <title>Document</title>
 </head>
 <body>
@@ -13,6 +15,52 @@
 
 <input type="text" id="input-pesquisa" class="input-pesquisa" placeholder="Nome do município" maxlength="20" required>
 <button type="button" id="botao-pesquisar" class="botao-pesquisa" onclick="buscar_previsao()">BUSCAR</button>
+
+
+<div class="main-container">
+            <div class="box-A">
+                <p class="box-A-p">PREVISAO TO TEMPO PARA</p>
+                <div class="box-A-nome-da-cidade">SÃO PAULO</div>
+            </div>
+
+            <div class="box-B">
+                <!--aqui serão 7 blocos lado a lado,1 para cada dia da semana-->
+                <div class="box-segu">
+                    <div class= "img-seg"><img src="img/icn-ensolarado.png"></div>
+                    
+                </div>
+
+                <div class="box-ter">
+                    <div class= "img-ter"><img src="img/icn-nublado.png"></div>
+                    
+                </div>
+
+                <div class="box-quar">
+                    <div class= "img-qua"><img src="img/icn-meio-chuvoso.png"></div>
+                   
+                </div>
+
+                <div class="box-qui">
+                    <div class= "img-qui"><img src="img/icn-chuvoso.png"></div>
+                    
+                </div>
+
+                <div class="box-sex">
+                    <div class= "img-sex"><img src="img/icn-tempestade.png"></div>
+                   
+                </div>
+
+                <div class="box-sab">
+                    <div class= "img-sab"><img src="img/icn-nublado.png"></div>
+                    
+                </div>
+
+                <div class="box-dom">
+                    <div class= "img-dom"><img src="img/icn-ensolarado.png"></div>
+                   
+                </div>
+            </div>
+        </div>
 
 
 
