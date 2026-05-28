@@ -1,6 +1,7 @@
 
 /*Define as dimensões do container principal*/
 .main-container{
+    
     border: 1px black solid;
     margin:15% 20% 15% 20%
 }
