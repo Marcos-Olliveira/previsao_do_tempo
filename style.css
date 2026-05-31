@@ -1,1 +1,111 @@
+﻿/* Seção 1: Caixa de pesquisa centralizada exibida inicialmente */
 
+/* Seção 2: Seção principal que vai ficar oculta inicialmente */
+body{}
+
+
+
+
+/* SEÇÃO DO CABEÇALHO */
+    header{
+        display:flex;
+        justify-content: space-between;
+        max-width:100%;
+        height:auto;
+        background-color:rgba(15, 110, 252, 0.753);    
+
+        padding: 10px 30px 10px 30px;
+    }
+
+    .header-logo{
+        background-color:yellow;
+        height:auto;
+        width:200px;
+    }
+
+    .header-search{
+        display:grid;
+        height:auto;
+        align-items:center;
+    }
+
+    .header-search p {
+        color:rgb(253, 253, 253);
+        font-size: 20px;
+        margin:0 0 5px 0;
+        text-align: center;
+    }
+
+    .header-search input{}
+
+
+
+
+
+
+/*   SEÇÃO DO MAIN*/
+
+/* COMPONENTE 1 - TABELA DA PREVISÃO */
+/* Define as dimensões do container principal */
+.main-container {
+    display:grid;
+    border: 1px solid black;
+    
+    max-width: fit-content; /* Faz com que a largura se adpte ao conteudo interno, nao deixando espaço em branco. */
+    margin:50px auto;
+}
+
+
+/* Define dimensões do container box-A dentro do main-container */
+.box-A {
+    border: 1px solid black;
+}
+
+
+/* Define dimensões do container box-B dentro do main-container */
+.box-B {
+    display: flex;
+    flex-wrap: wrap;
+    border: 1px solid black;
+    
+}
+
+
+/* Define o layout padrão dos blocos de cada dia da semana */
+.tabela {
+    display: grid;
+    border: 1px solid black;
+    width:120px;
+    justify-content: center;    
+    height: 250px;
+    
+}
+
+
+.dia {
+    max-width: 100%;
+    text-align:center;
+
+}
+
+.grau{}
+
+.img{}
+
+.temp-max-min{
+    display:flex;
+    justify-content: space-between;
+    max-width: 100%;
+}
+
+.temp-max,
+.seta-max{
+    margin-right:8px;
+    color:red;
+    font-weight: 700;
+}
+
+.temp-min{}
+/*   Seção footer */
+
+/*   Seção links */
