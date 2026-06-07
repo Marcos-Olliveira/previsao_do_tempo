@@ -12,9 +12,9 @@
     <!--BLOCO DA CAIXA DE PESQUISA CENTRAL
     ======================================
     ===================================-->
-    <div class="centered-search-wrapper" hidden>
+    <div class="centered-search-wrapper">
         <input type="text" class="search-box">
-        <button type="button" onclick="pesquisar()" class="search-button"></button>
+        <button type="button" onclick="buscarClima()" class="search-button"></button>
     </div>
 
 
@@ -22,7 +22,7 @@
     <!--BLOCO DO INDEX PRINCIPAL QUE FICARÁ OCULTO ANTES DA PESQUISA
     ================================================================
     =============================================================-->   
-    <header>
+    <header class="hidden" hidden>
         <!--bloco do logo do site
             ======================-->
         <div class="header-logo">
@@ -33,11 +33,11 @@
             ===========================-->
         <div class="header-search">
             <p>pesquisar cidade</p>
-            <input type="text" class="header-search-box" onkeydown="if(event.key==='Enter') pesquisar()">
+            <input type="text" class="header-search-box" id="city" onkeydown="if(event.key==='Enter') buscarClima()">
         </div>
     </header>
 
-    <main>
+    <main class="hidden" hidden>
         <!--container que contem a tabela da previsão que será apresentada
             ===============================================================-->
         <div class="main-container">
@@ -134,7 +134,7 @@
             </div>
         </div>
     </main>
-    <footer>
+    <footer class="hidden" hidden>
         <footer-links>
             <a href="#" class="footer-link"></a>
             <a href="#" class="footer-link"></a>
@@ -144,5 +144,6 @@
         </footer-links>
     </footer>
     <script src="script.js"></script>
+    <script src="buscar-api.js"></script>
 </body>
 </html> 

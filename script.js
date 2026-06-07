@@ -1,4 +1,4 @@
-const tabela_previsao = document.querySelector(".main-container")
+const tabela_previsao = document.querySelector(".hidden")
 
 // Função responsável por alternar manualmente a visibilidade do container
 // de resultados, mostrando a tabela quando necessário e ocultando-a quando
