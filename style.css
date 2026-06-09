@@ -1,9 +1,98 @@
-﻿/* Seção 1: Caixa de pesquisa centralizada exibida inicialmente */
+﻿/*Reset inicial para padronizar o comportamento dos diferentes navegadores */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+input,
+button,
+textarea,
+select {
+    font: inherit;
+    border: none;
+    outline: none;
+    background: none;
+}
+
+
+
+/* Seção 1: Caixa de pesquisa centralizada exibida inicialmente */
+    .centered-search-wrapper{
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    }
+
+    .search-box{
+        width:300px;
+        height:50px;;
+        font-size: 20px;
+        border: 2px rgb(67, 68, 66) solid;
+        border-radius: 10px;
+        text-align: center;
+
+    }
+
+
+.search-button{
+    margin-left:10px;
+    padding:10px;
+    color:white;
+    border: 2px rgb(161, 221, 20) solid;
+    background-color:rgb(47, 103, 187);
+    font-size:20px;
+    width:auto;
+    height:50px;
+    border-radius: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* Seção 2: Seção principal que vai ficar oculta inicialmente */
-body{}
 
 
+
+[hidden]{
+    display: none !important;
+}
 
 
 /* SEÇÃO DO CABEÇALHO */
@@ -36,7 +125,7 @@ body{}
         text-align: center;
     }
 
-    .header-search input{}
+    
 
 
 
@@ -88,9 +177,9 @@ body{}
 
 }
 
-.grau{}
 
-.img{}
+
+
 
 .temp-max-min{
     display:flex;
@@ -104,8 +193,3 @@ body{}
     color:red;
     font-weight: 700;
 }
-
-.temp-min{}
-/*   Seção footer */
-
-/*   Seção links */
