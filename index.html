@@ -5,27 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
 
-    <title>Document</title>
+    <title>Previsão do tempo</title>
 </head>
 <body>
-
-
-
-
-
-
-
-
-
-
-    <!--BLOCO DA CAIXA DE PESQUISA CENTRAL
-    ======================================
-    ===================================-->
     <div id="busca">
-        <input type="text" id="busca-search-box">
-        <button type="button" id="busca-search-button">Buscar</button>
-    </div>
+        <!--header-->
+        <header id="header-busca">
+                <!--bloco do logo do site
+                    ======================-->
+                <div class="header-logo">
+                    
+                </div>
 
+                <!--bloco da caixa de pesquisa
+                    ===========================-->
+                <div class="header-search">
+                    <p>pesquisar cidade</p>
+                    <input type="text" class="header-search-box" id="city" onkeydown="if(event.key==='Enter') buscar()">
+                </div>
+            </header>
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <!--BLOCO DA CAIXA DE PESQUISA CENTRAL
+        ======================================
+        ===================================-->
+        <div id="bloco-central">
+            <input type="text" id="busca-search-box">
+            <button type="button" id="busca-search-button">Buscar</button>
+        </div>
+    </div>
 
 
 
@@ -50,7 +71,7 @@
     ================================================================
     =============================================================--> 
     <div id="resultado">  
-        <header id="header">
+        <header id="header-resultado">
             <!--bloco do logo do site
                 ======================-->
             <div class="header-logo">
@@ -61,7 +82,7 @@
                 ===========================-->
             <div class="header-search">
                 <p>pesquisar cidade</p>
-                <input type="text" class="header-search-box" id="city" onkeydown="if(event.key==='Enter') buscarClima()">
+                <input type="text" class="header-search-box">
             </div>
         </header>
 
@@ -163,13 +184,13 @@
             </div>
         </main>
         <footer id="footer">
-            <footer-links>
+            <div>
                 <a href="#" class="footer-link"></a>
                 <a href="#" class="footer-link"></a>
                 <a href="#" class="footer-link"></a>
                 <a href="#" class="footer-link"></a>
                 <a href="#" class="footer-link"></a>
-            </footer-links>
+            </div>
         </footer>
     </div>
     <script src="script.js"></script>
