@@ -3,6 +3,10 @@
 const busca = document.getElementById("busca");
 const resultado = document.getElementById("resultado")
 
+//armazeno o elemento input da caixa de busca central
+  let input = document.getElementById("busca-search-box")
+
+
 //armazena o elemento botao na sessao busca
 let buscar_botao= document.getElementById("busca-search-button")
 
@@ -11,16 +15,15 @@ let estadoDaPagina = "buscar"
 
 
 
-//quando o botão é clicado, a função faz com que o html oculte a sessao buscar e exiba a sessao resultado
-buscar_botao.addEventListener("click",async function buscar() {
-    
+
+//crio uma função global para buscar o resultado da pesquisa
+async function buscar() {
     async function chamar_API(){
     
         //armazeno o valor digitado  pelo usuario no campo de pesquisa na sessao busca
         let cidade_pesquisada = document.getElementById("busca-search-box").value;
         let cidade_formatada = encodeURIComponent(cidade_pesquisada)
-        console.log("cidade:", cidade_formatada)
-        console.log("tipo:",typeof(cidade_formatada))
+        
 
         //crio a rede de segurança para monitorar
         try {
@@ -36,17 +39,15 @@ buscar_botao.addEventListener("click",async function buscar() {
             //converto a resposta bruta em um objeto manipulavel
             const dados = await resposta.json()
 
-            console.log(dados)
+            console.log(dados.results)
             
     
         }
         catch(erro){      
             console.log(erro)      
-        }
-    }
-    await chamar_API();
-           
-        
+        }}
+        await chamar_API();
+
         //condição para alternar a visualização da sessão busca e resultado
         if(estadoDaPagina ==="buscar"){
 
@@ -57,7 +58,18 @@ buscar_botao.addEventListener("click",async function buscar() {
             resultado.style.display="block";
 
         }
+           
+        
+        
+}
+
+    //quando o botão é clicado, a função faz com que o html oculte a sessao buscar e exiba a sessao resultado
+    buscar_botao.addEventListener("click",buscar)
+    input.addEventListener("keydown", (event)=>{
+        if(event.key==="Enter") buscar()
     })
+    
+    
 
 
 
