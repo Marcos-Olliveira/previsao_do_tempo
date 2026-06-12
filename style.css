@@ -27,7 +27,7 @@ select {
     }
 
     #busca-search-box{
-        width:300px;
+        width:500px;
         height:50px;;
         font-size: 20px;
         border: 2px rgb(67, 68, 66) solid;
@@ -128,6 +128,10 @@ select {
         text-align: center;
     }
 
+    .header-search-box{
+        background-color:white
+    }
+
     
 
 
@@ -139,18 +143,27 @@ select {
 
 /* COMPONENTE 1 - TABELA DA PREVISÃO */
 /* Define as dimensões do container principal */
-.main-container {
+#main-container {
+    width:fit-content;
+    margin:100px auto;
     display:grid;
     border: 1px solid black;
     
-    max-width: fit-content; /* Faz com que a largura se adpte ao conteudo interno, nao deixando espaço em branco. */
-    margin:50px auto;
 }
 
 
 /* Define dimensões do container box-A dentro do main-container */
 .box-A {
     border: 1px solid black;
+    justify-content: center;
+    text-align: center;
+    padding:10px;
+    background-color:rgba(15, 110, 252, 0.753);
+}
+
+.box-A p{
+    color:white;
+    font-size:20px;
 }
 
 
@@ -159,6 +172,7 @@ select {
     display: flex;
     flex-wrap: wrap;
     border: 1px solid black;
+    width:auto
     
 }
 
@@ -169,8 +183,14 @@ select {
     border: 1px solid black;
     width:120px;
     justify-content: center;    
-    height: 250px;
+    height: auto;
+    padding:10px;
     
+}
+
+.tabela .dia{
+    color:rgb(58, 33, 199);
+    margin:10px;
 }
 
 

@@ -13,54 +13,52 @@ let buscar_botao= document.getElementById("busca-search-button")
 //representa o estado da página, a sessão que está sendo exibida inicialmente
 let estadoDaPagina = "buscar"
 
+//altero o nome da cidade no paragrafo acima da tabela do tempo
+
+
 
 
 
 //crio uma função global para buscar o resultado da pesquisa
 async function buscar() {
-    async function chamar_API(){
-    
-        //armazeno o valor digitado  pelo usuario no campo de pesquisa na sessao busca
-        let cidade_pesquisada = document.getElementById("busca-search-box").value;
-        let cidade_formatada = encodeURIComponent(cidade_pesquisada)
-        
+    //armazeno o valor digitado pelo usuario no campo de pesquisa na sessao busca
+    let cidade_pesquisada = document.getElementById("busca-search-box").value;
 
-        //crio a rede de segurança para monitorar
-        try {
-            //crio uma variavel para armazenar a chave da api nescessaria para receber os dados!
-            const chaveApi = "df519a56"
+    //Trato o texto digitado pelo usuário para ter compatibilidade nos navegadores
+    let cidade_formatada = encodeURIComponent(cidade_pesquisada)
 
-            //monto a url com as informações. Detalhe, city_name= e Key=  são obrigatorios e padronizados pelo site da api
-            const url = `https://corsproxy.io/?https://api.hgbrasil.com/weather?city_name=${cidade_formatada}&key=${chaveApi}`;
+    //pego o elemento span no paragrafo acima da tabela do tempo
+    let nome_da_cidade_acima_da_tabela = document.getElementById("cidade-nome")
 
-            //disparo o pedido http e aguarda o envelope da resposta
-            const resposta = await fetch(url)
+    //atribuo ao span o nome da cidade digitada pelo usuario
+    nome_da_cidade_acima_da_tabela.textContent = cidade_pesquisada;
 
-            //converto a resposta bruta em um objeto manipulavel
-            const dados = await resposta.json()
+    //crio a rede de segurança para monitorar
+    try {
+        //crio uma variavel para armazenar a chave da api nescessaria para receber os dados!
+        const chaveApi = "df519a56"
 
-            console.log(dados.results)
-            
-    
-        }
-        catch(erro){      
-            console.log(erro)      
-        }}
-        await chamar_API();
+        //monto a url com as informações. Detalhe, city_name= e Key=  são obrigatorios e padronizados pelo site da api
+        const url = `https://corsproxy.io/?https://api.hgbrasil.com/weather?city_name=${cidade_formatada}&key=${chaveApi}`;
 
-        //condição para alternar a visualização da sessão busca e resultado
-        if(estadoDaPagina ==="buscar"){
+        //disparo o pedido http e aguarda o envelope da resposta
+        const resposta = await fetch(url)
 
-            busca.style.display="none";
+        //converto a resposta bruta em um objeto manipulavel
+        const dados = await resposta.json()
 
-            estadoDaPagina = "resultado";
+        console.log(dados.results.city)
+    }
+    catch(erro){      
+        console.log(erro)      
+    }
 
-            resultado.style.display="block";
-
-        }
-           
-        
-        
+    //condição para alternar a visualização da sessão busca e resultado
+    if(estadoDaPagina === "buscar"){
+        busca.style.display = "none";
+        estadoDaPagina = "resultado";
+        resultado.style.display = "block";
+    }
 }
 
     //quando o botão é clicado, a função faz com que o html oculte a sessao buscar e exiba a sessao resultado
