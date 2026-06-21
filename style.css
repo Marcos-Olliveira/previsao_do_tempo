@@ -18,34 +18,32 @@ select {
 
 
 /* Seção 1: Caixa de pesquisa centralizada exibida inicialmente */
-    #bloco-central{
+#bloco-central {
     margin: 0;
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    }
+}
 
-    #busca-search-box{
-        width:500px;
-        height:50px;;
-        font-size: 20px;
-        border: 2px rgb(67, 68, 66) solid;
-        border-radius: 10px;
-        text-align: center;
+#busca-search-box {
+    width: 500px;
+    height: 50px;
+    font-size: 20px;
+    border: 2px rgb(67, 68, 66) solid;
+    border-radius: 10px;
+    text-align: center;
+}
 
-    }
-
-
-#busca-search-button{
-    margin-left:10px;
-    padding:10px;
-    color:white;
+#busca-search-button {
+    margin-left: 10px;
+    padding: 10px;
+    color: white;
     border: 2px rgb(161, 221, 20) solid;
-    background-color:rgb(47, 103, 187);
-    font-size:20px;
-    width:auto;
-    height:50px;
+    background-color: rgb(47, 103, 187);
+    font-size: 20px;
+    width: auto;
+    height: 50px;
     border-radius: 10px;
 }
 
@@ -96,41 +94,38 @@ select {
 
 
 /* SEÇÃO DO CABEÇALHO */
-    #header-resultado,
-    #header-busca{
-            display:flex;
-            justify-content: space-between;
-            max-width:100%;
-            height:auto;
-            background-color:rgba(15, 110, 252, 0.753);    
+#header-resultado,
+#header-busca {
+    display: flex;
+    justify-content: space-between;
+    max-width: 100%;
+    height: auto;
+    background-color: rgba(15, 110, 252, 0.753);
+    padding: 10px 30px 10px 30px;
+}
 
-            padding: 10px 30px 10px 30px;
-    }
+.header-logo {
+    background-color: yellow;
+    height: auto;
+    width: 200px;
+}
 
-    
+.header-search {
+    display: grid;
+    height: auto;
+    align-items: center;
+}
 
-    .header-logo{
-        background-color:yellow;
-        height:auto;
-        width:200px;
-    }
+.header-search p {
+    color: rgb(253, 253, 253);
+    font-size: 20px;
+    margin: 0 0 5px 0;
+    text-align: center;
+}
 
-    .header-search{
-        display:grid;
-        height:auto;
-        align-items:center;
-    }
-
-    .header-search p {
-        color:rgb(253, 253, 253);
-        font-size: 20px;
-        margin:0 0 5px 0;
-        text-align: center;
-    }
-
-    .header-search-box{
-        background-color:white
-    }
+.header-search-box {
+    background-color: white;
+}
 
     
 
@@ -153,17 +148,13 @@ select {
 
 
 /* Define dimensões do container box-A dentro do main-container */
-.box-A {
-    border: 1px solid black;
-    justify-content: center;
-    text-align: center;
-    padding:10px;
-    background-color:rgba(15, 110, 252, 0.753);
-}
 
-.box-A p{
-    color:white;
-    font-size:20px;
+
+h1{
+    color:rgb(0, 0, 0);
+    font-size:50px;
+    text-align: center;
+    margin-top:100px;
 }
 
 
@@ -172,15 +163,14 @@ select {
     display: flex;
     flex-wrap: wrap;
     border: 1px solid black;
-    width:auto
-    
+    width: auto;
 }
 
 
 /* Define o layout padrão dos blocos de cada dia da semana */
 .tabela {
     display: grid;
-    border: 1px solid black;
+    border: 1px solid black;    
     width:120px;
     justify-content: center;    
     height: auto;
@@ -215,4 +205,57 @@ select {
     margin-right:8px;
     color:red;
     font-weight: 700;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#busca {
+}
+
+.main {
+}
+
+.dia-semana {
+}
+
+.dia-mes {
+}
+
+.graus {
+}
+
+.temp-min {
+}
+
+#footer {
+}
+
+.footer-links {
+}
+
+.footer-link {
+}
+
+@media (max-width: 1024px) {
+}
+
+@media (max-width: 768px) {
+}
+
+@media (max-width: 480px) {
 }

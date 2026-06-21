@@ -4,7 +4,7 @@ const busca = document.getElementById("busca");
 const resultado = document.getElementById("resultado")
 
 //armazeno o elemento input da caixa de busca central
-  let input = document.getElementById("busca-search-box")
+let input = document.getElementById("busca-search-box")
 
 
 //armazena o elemento botao na sessao busca
@@ -27,27 +27,21 @@ async function buscar() {
     //Trato o texto digitado pelo usuário para ter compatibilidade nos navegadores
     let cidade_formatada = encodeURIComponent(cidade_pesquisada)
 
-    //pego o elemento span no paragrafo acima da tabela do tempo
-    let nome_da_cidade_acima_da_tabela = document.getElementById("cidade-nome")
+  
 
-    //atribuo ao span o nome da cidade digitada pelo usuario
-    nome_da_cidade_acima_da_tabela.textContent = cidade_pesquisada;
 
     //crio a rede de segurança para monitorar
     try {
-        //crio uma variavel para armazenar a chave da api nescessaria para receber os dados!
-        const chaveApi = "df519a56"
+        //atribuo uma constante com a url para usar como parametro
+        const geo_url =`https://geocoding-api.open-meteo.com/v1/search?name=${cidade_formatada}&count=1`
 
-        //monto a url com as informações. Detalhe, city_name= e Key=  são obrigatorios e padronizados pelo site da api
-        const url = `https://corsproxy.io/?https://api.hgbrasil.com/weather?city_name=${cidade_formatada}&key=${chaveApi}`;
+        // solicito os dados brutos da api de geolocalização com a intenção de extrair a latitude e longitude
+        const localizaçao = await fetch(geo_url)
+        const resp_tratada = await localizaçao.json()
+        console.log(resp_tratada.results[0].latitude)
+        console.log(resp_tratada.results[0].longitude)
 
-        //disparo o pedido http e aguarda o envelope da resposta
-        const resposta = await fetch(url)
 
-        //converto a resposta bruta em um objeto manipulavel
-        const dados = await resposta.json()
-
-        console.log(dados.results.city)
     }
     catch(erro){      
         console.log(erro)      
