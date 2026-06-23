@@ -140,9 +140,9 @@ select {
 /* Define as dimensões do container principal */
 #main-container {
     width:fit-content;
-    margin:100px auto;
+    margin:auto;
     display:grid;
-    border: 1px solid black;
+   
     
 }
 
@@ -152,9 +152,13 @@ select {
 
 h1{
     color:rgb(0, 0, 0);
-    font-size:50px;
-    text-align: center;
+    font-size:auto;
+    width: 900px;
+    text-align: justify;
+    text-align-last:justify;
+    margin:auto;
     margin-top:100px;
+    margin-bottom:50px;
 }
 
 
@@ -162,25 +166,44 @@ h1{
 .box-B {
     display: flex;
     flex-wrap: wrap;
-    border: 1px solid black;
-    width: auto;
+    width: 900px;
 }
 
 
 /* Define o layout padrão dos blocos de cada dia da semana */
 .tabela {
     display: grid;
-    border: 1px solid black;    
+    border-right:1px solid rgb(168, 165, 165);    
     width:120px;
     justify-content: center;    
     height: auto;
-    padding:10px;
-    
+    padding:0px;
+    border: solid 1px black;        
 }
 
-.tabela .dia{
-    color:rgb(58, 33, 199);
-    margin:10px;
+.dia-semana{
+    background-color:rgb(77, 115, 240);
+    width: 120px;
+    text-align: center;
+    font-size:25px;
+    color:white;
+    margin:0;
+    margin-bottom:15px;
+    padding:5px 15px 5px 15px;    
+    border: solid 1px black;
+}
+
+
+.dia-mes{
+    text-align:center;
+    font-size:18px;
+    font-weight:600;
+    margin-bottom:15px;
+}
+    
+.icone-clima{
+    width:70px;
+    height:70px;
 }
 
 
