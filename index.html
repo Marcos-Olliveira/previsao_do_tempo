@@ -8,160 +8,23 @@
     <title>Previsão do tempo</title>
 </head>
 <body>
-    <div id="busca">
-        <header id="header-busca">
-            <div class="header-logo"></div>
-        </header>
 
-        <section id="bloco-central">
-            <input type="text" id="busca-search-box" placeholder="Digite aqui a cidade que deseja pesquisar">
-            <button type="button" id="busca-search-button">Buscar</button>
-        </section>
-    </div>
+        <!--<div class="resul"></div>
+        <div class="resul"></div>
+        <div class="resul"></div>
+        <div class="resul"></div>
+        <div class="resul"></div>
+        <div class="resul"></div>
+        <div class="resul"></div>-->
 
-    <!--BLOCO PRINCIPAL QUE FICARÁ OCULTO ANTES DA PESQUISA
-    ================================================================
-    =============================================================-->
-    <div id="resultado">
-        <header id="header-resultado">
-            <!--bloco do logo do site
-                ======================-->
-            <div class="header-logo">
+            <input type="text" id="input">
 
-            </div>
+            <button id="botao" onclick="buscar()">buscar</button>
 
-            <!--bloco da caixa de pesquisa
-                ===========================-->
-            <div class="header-search">
-                <p>pesquisar cidade</p>
-                <input type="text" class="header-search-box">
-            </div>
-        </header>
-
-        <main class="main">
+            <div id="resul"></div>
 
 
-            <h1>Previsão do tempo para os próximos 7 dias em <span id="cidade-nome"></span></h1>
 
-            <!--container que contem a tabela da previsão que será apresentada
-                ===============================================================-->
-            <div id="main-container">
-
-                <div class="box-B">
-                    <!--aqui serão 7 blocos lado a lado, 1 para cada dia da semana-->
-                    <div class="tabela">
-                    <p class="dia-semana" id="dia-semana-segunda">segunda</p>
-                    <p class="dia-mes" id="dia-mes-segunda"></p>
-                        <p class="descricao" id="descricao-segunda"></p>
-                        <img src="img/icn-chuvoso.png" alt="Ícone do clima" class="icone-clima" id="icone-segunda">
-                        <div class="temperatura" id="temperatura-segunda"></div> 
-                        <div class="temp-max-min">
-                            <p class="temp-max" id="temp-max-segunda"></p>
-                            <p class="seta-max">&uarr;</p>
-                            <p class="temp-min" id="temp-min-segunda"></p>
-                            <p class="seta-min">&darr;</p>
-                        </div>
-                        <div class="umidade" id="umidade-segunda"></div>
-                        <div class="velocidade-vento" id="velocidade-vento-segunda"></div>
-                    </div>
-
-                    <div class="tabela">                                                
-                        <p class="dia-semana" id="dia-semana-terca">terça</p>
-                        <p class="dia-mes" id="dia-mes-terca"></p>
-                        <p class="descricao" id="descricao-terca"></p>
-                        <img src="img/icn-chuvoso.png" alt="Ícone do clima" class="icone-clima" id="icone-terca">
-                        <div class="temperatura" id="temperatura-terca"></div>
-                        <div class="temp-max-min">
-                            <p class="temp-max" id="temp-max-terca"></p>
-                            <p class="seta-max">&uarr;</p>
-                            <p class="temp-min" id="temp-min-terca"></p>
-                            <p class="seta-min">&darr;</p>
-                        </div>
-                        <div class="umidade" id="umidade-terca"></div>
-                        <div class="velocidade-vento" id="velocidade-vento-terca"></div>
-                    </div>
-
-                    <div class="tabela">                       
-                        <p class="dia-semana" id="dia-semana-quarta">quarta</p>
-                         <p class="dia-mes" id="dia-mes-quarta"></p>
-                        <p class="descricao" id="descricao-quarta"></p>
-                        <img src="img/icn-chuvoso.png" alt="Ícone do clima" class="icone-clima" id="icone-quarta">
-                        <div class="temperatura" id="temperatura-quarta"></div>
-                        <div class="temp-max-min">
-                            <p class="temp-max" id="temp-max-quarta"></p>
-                            <p class="seta-max">&uarr;</p>
-                            <p class="temp-min" id="temp-min-quarta"></p>
-                            <p class="seta-min">&darr;</p>
-                        </div>
-                        <div class="umidade" id="umidade-quarta"></div>
-                        <div class="velocidade-vento" id="velocidade-vento-quarta"></div>
-                    </div>
-
-                    <div class="tabela">                        
-                        <p class="dia-semana" id="dia-semana-quinta">quinta</p>
-                        <p class="dia-mes" id="dia-mes-quinta"></p>
-                        <p class="descricao" id="descricao-quinta"></p>
-                        <img src="img/icn-chuvoso.png" alt="Ícone do clima" class="icone-clima" id="icone-quinta">
-                        <div class="temperatura" id="temperatura-quinta"></div>
-                        <div class="temp-max-min">
-                            <p class="temp-max" id="temp-max-quinta"></p>
-                            <p class="seta-max">&uarr;</p>
-                            <p class="temp-min" id="temp-min-quinta"></p>
-                            <p class="seta-min">&darr;</p>
-                        </div>
-                        <div class="umidade" id="umidade-quinta"></div>
-                        <div class="velocidade-vento" id="velocidade-vento-quinta"></div>
-                    </div>
-
-                    <div class="tabela">                    
-                        <p class="dia-semana" id="dia-semana-sexta">sexta</p>
-                        <p class="dia-mes" id="dia-mes-sexta"></p>
-                        <p class="descricao" id="descricao-sexta"></p>
-                        <img src="img/icn-chuvoso.png" alt="Ícone do clima" class="icone-clima" id="icone-sexta">
-                        <div class="temperatura" id="temperatura-sexta"></div>
-                        <div class="temp-max-min">
-                            <p class="temp-max" id="temp-max-sexta"></p>
-                            <p class="seta-max">&uarr;</p>
-                            <p class="temp-min" id="temp-min-sexta"></p>
-                            <p class="seta-min">&darr;</p>
-                        </div>
-                        <div class="umidade" id="umidade-sexta"></div>
-                        <div class="velocidade-vento" id="velocidade-vento-sexta"></div>
-                    </div>
-
-                    <div class="tabela">                        
-                        <p class="dia-semana" id="dia-semana-sabado">sábado</p>
-                        <p class="dia-mes" id="dia-mes-sabado"></p>
-                        <p class="descricao" id="descricao-sabado"></p>
-                        <img src="img/icn-chuvoso.png" alt="Ícone do clima" class="icone-clima" id="icone-sabado">
-                        <div class="temperatura" id="temperatura-sabado"></div>
-                        <div class="temp-max-min">
-                            <p class="temp-max" id="temp-max-sabado"></p>
-                            <p class="seta-max">&uarr;</p>
-                            <p class="temp-min" id="temp-min-sabado"></p>
-                            <p class="seta-min">&darr;</p>
-                        </div>
-                        <div class="umidade" id="umidade-sabado"></div>
-                        <div class="velocidade-vento" id="velocidade-vento-sabado"></div>
-                    </div>
-
-                    <div class="tabela">                        
-                        <p class="dia-semana" id="dia-semana-domingo">domingo</p>
-                        <p class="dia-mes" id="dia-mes-domingo"></p>
-                        <p class="descricao" id="descricao-domingo"></p>
-                        <img src="img/icn-chuvoso.png" alt="Ícone do clima" class="icone-clima" id="icone-domingo">
-                        <div class="temperatura" id="temperatura-domingo"></div>
-                        <div class="temp-max-min">
-                            <p class="temp-max" id="temp-max-domingo"></p>
-                            <p class="seta-max">&uarr;</p>
-                            <p class="temp-min" id="temp-min-domingo"></p>
-                            <p class="seta-min">&darr;</p>
-                        </div>
-                        <div class="umidade" id="umidade-domingo"></div>
-                        <div class="velocidade-vento" id="velocidade-vento-domingo"></div>
-                    </div>
-                </div>
-            </div>
         </main>
         <footer id="footer">
             <div class="footer-links">
