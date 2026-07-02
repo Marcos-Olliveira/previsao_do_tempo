@@ -1,4 +1,27 @@
 
+// ================================================================
+// ALTERAÇÕES FEITAS PELO CLAUDE NESTE ARQUIVO:
+// => 1. O array dia_da_semana estava fora de ordem (começava em "Segunda").
+//      getDay() do JS retorna 0 = Domingo, 1 = Segunda ... 6 = Sábado.
+//      Reordenei o array pra começar em "Domingo", senão cada card
+//      mostraria o nome do dia errado (deslocado).
+// => 2. A linha "const data = [dia, mes-1, ano]" criava um ARRAY solto,
+//      não um objeto Date de verdade. Troquei por
+//      "new Date(ano, mes-1, dia)" (ordem correta que o construtor espera).
+// => 3. Adicionei o parâmetro "index" no forEach. Como temperature_2m_max,
+//      temperature_2m_min, precipitation_sum e weather_code são ARRAYS
+//      PARALELOS a "time" (mesma posição = mesmo dia), o index é o que
+//      permite buscar o valor correspondente de cada um deles.
+// => 4. Criei o objeto "mapaTempo", que traduz o weather_code (número
+//      que a API devolve, ex: 3) numa descrição legível (ex: "Nublado").
+// => 5. Implementei a construção dos 7 cards (createElement/appendChild),
+//      limpando o container #resul no início de cada busca — sem isso,
+//      buscas repetidas iam empilhar cards antigos junto com os novos.
+// => 6. Classes usadas nos cards, pra você estilizar no CSS:
+//      .card / .card-dia-semana / .card-data / .card-clima /
+//      .card-temp-max / .card-temp-min / .card-precipitacao
+// ================================================================
+
 //armazena as sessoes busca e resultado em duas variáveis
 
 
@@ -50,22 +73,111 @@
 
                         //converto a resposta bruta em um objeto manipulavel
                         const dados = await resposta.json()
-                        console.log(dados);
-
                         
-                        dados.daily.time.forEach(()=> {
 
-                        resul.innerHTML= dados.daily.time[1]
-                        
-                            
-                            
+                        // limpo o container antes de desenhar os cards, pra evitar que
+                        // buscas repetidas empilhem cards antigos junto com os novos
+                        resul.innerHTML = "";
+
+                        // array de tradução número -> nome do dia.
+                        // o índice tem que bater com o retorno de getDay(): 0 = Domingo ... 6 = Sábado
+                        const dia_da_semana = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'];
+
+                        // tabela simplificada de tradução do weather_code (código WMO) da API
+                        // pra uma descrição legível. Não é exaustiva, cobre os códigos mais comuns.
+                        const mapaTempo = {
+                            0: "Céu limpo",
+                            1: "Poucas nuvens",
+                            2: "Parcialmente nublado",
+                            3: "Nublado",
+                            45: "Neblina",
+                            48: "Neblina com geada",
+                            51: "Garoa fraca",
+                            53: "Garoa moderada",
+                            55: "Garoa forte",
+                            61: "Chuva fraca",
+                            63: "Chuva moderada",
+                            65: "Chuva forte",
+                            71: "Neve fraca",
+                            73: "Neve moderada",
+                            75: "Neve forte",
+                            80: "Pancadas de chuva fracas",
+                            81: "Pancadas de chuva moderadas",
+                            82: "Pancadas de chuva fortes",
+                            95: "Trovoadas"
+                        };
+
+                        // percorro o array de datas (time). Uso "item" pra pegar a data daquele dia,
+                        // e "index" pra buscar a MESMA posição nos outros arrays paralelos
+                        // (temperature_2m_max, temperature_2m_min, precipitation_sum, weather_code)
+                        dados.daily.time.forEach(function (item, index) {
+
+                            // divido a string representada por item em 3 partes (ano, mes, dia)
+                            const data_bruta = item.split("-");
+                            const ano = data_bruta[0];
+                            const mes = data_bruta[1];
+                            const dia = data_bruta[2];
+
+                            // construo o objeto Date na ORDEM que o construtor espera: (ano, mes-1, dia).
+                            // o "-1" no mês é necessário pq o Date usa índice de mês (0 = Janeiro ... 11 = Dezembro)
+                            const data = new Date(ano, mes - 1, dia);
+
+                            // getDay() devolve um número de 0 a 6 (um único número, não um array),
+                            // que eu uso como índice pra buscar o nome certo dentro de dia_da_semana
+                            const numeroDoDia = data.getDay();
+                            const nomeDoDia = dia_da_semana[numeroDoDia];
+
+                            // busco, na mesma posição (index), o valor correspondente em cada
+                            // um dos outros arrays paralelos
+                            const tempMax = dados.daily.temperature_2m_max[index];
+                            const tempMin = dados.daily.temperature_2m_min[index];
+                            const precipitacao = dados.daily.precipitation_sum[index];
+                            const codigoClima = dados.daily.weather_code[index];
+                            const descricaoClima = mapaTempo[codigoClima] || "Não disponível";
+
+                            // ---------- construção do card (createElement + appendChild) ----------
+
+                            // 1. crio o container do card (a "caixa" vazia, ainda isolada em memória)
+                            const card = document.createElement('div');
+                            card.classList.add('card');
+
+                            // 2. crio e preencho cada pedaço de informação, um elemento por vez
+                            const elementoDia = document.createElement('h3');
+                            elementoDia.classList.add('card-dia-semana');
+                            elementoDia.textContent = nomeDoDia;
+
+                            const elementoData = document.createElement('p');
+                            elementoData.classList.add('card-data');
+                            elementoData.textContent = `${dia}/${mes}`;
+
+                            const elementoClima = document.createElement('p');
+                            elementoClima.classList.add('card-clima');
+                            elementoClima.textContent = descricaoClima;
+
+                            const elementoTempMax = document.createElement('p');
+                            elementoTempMax.classList.add('card-temp-max');
+                            elementoTempMax.textContent = `Máx: ${tempMax}°C`;
+
+                            const elementoTempMin = document.createElement('p');
+                            elementoTempMin.classList.add('card-temp-min');
+                            elementoTempMin.textContent = `Mín: ${tempMin}°C`;
+
+                            const elementoPrecipitacao = document.createElement('p');
+                            elementoPrecipitacao.classList.add('card-precipitacao');
+                            elementoPrecipitacao.textContent = `Chuva: ${precipitacao}mm`;
+
+                            // 3. encaixo cada pedaço DENTRO do card (a ordem aqui = ordem visual no card)
+                            card.appendChild(elementoDia);
+                            card.appendChild(elementoData);
+                            card.appendChild(elementoClima);
+                            card.appendChild(elementoTempMax);
+                            card.appendChild(elementoTempMin);
+                            card.appendChild(elementoPrecipitacao);
+
+                            // 4. só depois do card estar montado por completo, encaixo ele
+                            // no container principal da página (#resul)
+                            resul.appendChild(card);
                         });
-                        
-
-
-                            
-
-                        
                     }
                     catch(erro){      
                         console.log(erro)      

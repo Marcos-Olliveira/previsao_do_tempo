@@ -1,14 +1,66 @@
 
-body{
-display:flex}
+/* ================================================================
+   ALTERAÇÕES FEITAS PELO CLAUDE NESTE ARQUIVO:
+   => 1. A classe .resul existia mas não é mais usada (o container agora
+        é o id #resul, criado no HTML). Troquei por regras pro #resul
+        e pelas classes que o JS aplica em cada card (.card e as
+        subclasses .card-dia-semana, .card-data, etc).
+   => 2. Deixei o #resul com display:flex + flex-wrap, pra os 7 cards
+        ficarem lado a lado e quebrarem linha em telas menores.
+   => 3. O visual aqui é só uma base funcional — ajuste cores, fontes,
+        espaçamentos à vontade, as classes já estão nomeadas e
+        aplicadas certinho pelo JS, então qualquer mudança de CSS
+        reflete automaticamente nos 7 cards.
+   ================================================================ */
 
-.teste{
-
+body {
+    display: flex;
+    flex-direction: column;
+    font-family: Arial, sans-serif;
 }
 
-.resul{
-margin-right:30px;
-background-color:rgb(143, 224, 245);
-width:90px;
-height:60px;
+#resul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.card {
+    background-color: rgb(143, 224, 245);
+    width: 130px;
+    padding: 12px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.card-dia-semana {
+    margin: 0 0 8px 0;
+    font-size: 1rem;
+}
+
+.card-data {
+    margin: 2px 0;
+    font-size: 0.85rem;
+    color: #333;
+}
+
+.card-clima {
+    margin: 6px 0;
+    font-size: 0.85rem;
+}
+
+.card-temp-max {
+    margin: 2px 0;
+    font-weight: bold;
+}
+
+.card-temp-min {
+    margin: 2px 0;
+}
+
+.card-precipitacao {
+    margin: 6px 0 0 0;
+    font-size: 0.8rem;
+    color: #333;
 }

@@ -1,3 +1,19 @@
+<!--
+    ALTERAÇÕES FEITAS PELO CLAUDE NESTE ARQUIVO:
+    => 1. Havia uma tag </main> fechando sem nenhuma <main> aberta antes,
+         e uma </div> extra sem abertura correspondente. Tags soltas
+         deixam o HTML inválido (o navegador tenta "adivinhar" a
+         estrutura, o que pode causar bugs de layout difíceis de rastrear).
+         Removi as duas tags soltas.
+    => 2. Removi os comentários com as 7 <div class="resul"> antigas —
+         elas não são mais necessárias, porque agora os 7 cards são
+         criados dinamicamente pelo JS (createElement/appendChild)
+         dentro de #resul a cada busca.
+    => 3. Não criei nenhuma estrutura de card fixa aqui no HTML de propósito:
+         ela é 100% gerada pelo script.js. Classes que os cards recebem,
+         pra você estilizar no CSS: .card / .card-dia-semana / .card-data /
+         .card-clima / .card-temp-max / .card-temp-min / .card-precipitacao
+-->
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -9,23 +25,12 @@
 </head>
 <body>
 
-        <!--<div class="resul"></div>
-        <div class="resul"></div>
-        <div class="resul"></div>
-        <div class="resul"></div>
-        <div class="resul"></div>
-        <div class="resul"></div>
-        <div class="resul"></div>-->
+        <input type="text" id="input">
 
-            <input type="text" id="input">
+        <button id="botao" onclick="buscar()">buscar</button>
 
-            <button id="botao" onclick="buscar()">buscar</button>
+        <div id="resul"></div>
 
-            <div id="resul"></div>
-
-
-
-        </main>
         <footer id="footer">
             <div class="footer-links">
                 <a href="#" class="footer-link"></a>
@@ -35,7 +40,7 @@
                 <a href="#" class="footer-link"></a>
             </div>
         </footer>
-    </div>
+
     <script src="script.js"></script>
 </body>
 </html>
