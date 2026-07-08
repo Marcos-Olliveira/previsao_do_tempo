@@ -25,21 +25,71 @@
 </head>
 <body>
 
-        <input type="text" id="input">
 
-        <button id="botao" onclick="buscar()">buscar</button>
 
-        <div id="resul"></div>
+    <!--Cabeçalho da página-->
+    <header>
+        <!-- adicionado o atribudo "area-live"  para os leitores de tela entenderem que é um titulo dinâmico-->
+        <h1 id="titulo_principal" aria-live="polite">
+            <span>Estado</span> <!--recebe a cidade oferecida pelo sistema operacional do usuario-->
+            <span>País</span>
+        </h1>
 
-        <footer id="footer">
-            <div class="footer-links">
-                <a href="#" class="footer-link"></a>
-                <a href="#" class="footer-link"></a>
-                <a href="#" class="footer-link"></a>
-                <a href="#" class="footer-link"></a>
-                <a href="#" class="footer-link"></a>
-            </div>
-        </footer>
+        <div class="header_campo_de_busca">
+            <label for="buscar_cidade" class="sr-only"></label> 
+            <input type="text" id="buscar_cidade" placeholder="Buscar cidade...">
+            <button id="botao" onclick="buscar()">buscar</button>
+        </div>
+
+        <div class="data_atual">
+            <p id="dia_da_semana">seg</p>
+            <p id="dia_do_mes">03 de JUL</p>
+            <p id="hora_atual">00:00</p>
+        </div>
+    </header>
+
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</section>
+        <section id="proximos_dias"></section>
+
+
+
+
+
+
+
+
+
+
+
+
+</main>
+
+
+        
+
+        
+
 
     <script src="script.js"></script>
 </body>
