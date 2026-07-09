@@ -1,29 +1,4 @@
 
-// ================================================================
-// ALTERAÇÕES FEITAS PELO CLAUDE NESTE ARQUIVO:
-// => 1. O array dia_da_semana estava fora de ordem (começava em "Segunda").
-//      getDay() do JS retorna 0 = Domingo, 1 = Segunda ... 6 = Sábado.
-//      Reordenei o array pra começar em "Domingo", senão cada card
-//      mostraria o nome do dia errado (deslocado).
-// => 2. A linha "const data = [dia, mes-1, ano]" criava um ARRAY solto,
-//      não um objeto Date de verdade. Troquei por
-//      "new Date(ano, mes-1, dia)" (ordem correta que o construtor espera).
-// => 3. Adicionei o parâmetro "index" no forEach. Como temperature_2m_max,
-//      temperature_2m_min, precipitation_sum e weather_code são ARRAYS
-//      PARALELOS a "time" (mesma posição = mesmo dia), o index é o que
-//      permite buscar o valor correspondente de cada um deles.
-// => 4. Criei o objeto "mapaTempo", que traduz o weather_code (número
-//      que a API devolve, ex: 3) numa descrição legível (ex: "Nublado").
-// => 5. Implementei a construção dos 7 cards (createElement/appendChild),
-//      limpando o container #resul no início de cada busca — sem isso,
-//      buscas repetidas iam empilhar cards antigos junto com os novos.
-// => 6. Classes usadas nos cards, pra você estilizar no CSS:
-//      .card / .card-dia-semana / .card-data / .card-clima /
-//      .card-temp-max / .card-temp-min / .card-precipitacao
-// ================================================================
-
-//armazena as sessoes busca e resultado em duas variáveis
-
 
     
         //crio uma função global para buscar o resultado da pesquisa
@@ -32,7 +7,7 @@
 
             
                 //armazeno o valor digitado pelo usuario no campo de pesquisa na sessao busca
-                let cidade_pesquisada = document.getElementById("input").value;
+                let cidade_pesquisada = document.getElementById("buscar_cidade").value;
 
                 //Trato o texto digitado pelo usuário para ter compatibilidade nos navegadores
                 let cidade_formatada = encodeURIComponent(cidade_pesquisada)
@@ -53,7 +28,7 @@
 
 
                     // teste no html através do id result (apapgar depois)
-                       let resul = document.querySelector("#resul")
+                       let resul = document.querySelector("#proximos_dias")
                         
 
 
@@ -67,13 +42,13 @@
                     
 
                         //monto a url com as informações de latitude e longitude recebidas pela API acima e busco os dados em tempo real
-                        const url = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&daily=temperature_2m_max,temperature_2m_min,precipitation_sum,weather_code&timezone=auto&forecast_days=7`;
+                        const url = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,apparent_temperature,relative_humidity_2m,weather_code,is_day,wind_speed_10m&daily=temperature_2m_max,temperature_2m_min,precipitation_sum,weather_code&timezone=auto&forecast_days=7`;
                         //armazeno a resposta da requisição em uma constante
                         const resposta = await fetch(url)
 
                         //converto a resposta bruta em um objeto manipulavel
                         const dados = await resposta.json()
-                        
+                        console.log(dados)
 
                         // limpo o container antes de desenhar os cards, pra evitar que
                         // buscas repetidas empilhem cards antigos junto com os novos
@@ -106,6 +81,62 @@
                             82: "Pancadas de chuva fortes",
                             95: "Trovoadas"
                         };
+
+                        //constantes que representarão os bocos principais no html 
+                        // const elementoDia = document.createElement('h3');
+                        //     elementoDia.classList.add('card-dia-semana');
+                        //     elementoDia.textContent = nomeDoDia;
+
+                        //seleciona o elemento gora no html
+                        const card_agora = document.getElementById('agora')
+
+                        //cria um paragrafo
+                        const informacao_atual = document.createElement('p');
+                        informacao_atual.id ='informacao_atual'
+                        informacao_atual.innerText = "Agora"
+
+                        const temp_atual = document.createElement('span');
+                        const celsius = document.createElement('span');
+                        temp_atual.id='temp_atual'
+                        celsius.id='celsius'                       
+                        temp_atual.innerText=`${dados.current.apparent_temperature}`
+                        celsius.innerText=`${dados.current_units.temperature_2m }` 
+
+                        const estado_atual = document.createElement('p')
+                        estado_atual.id = 'estado_atual'
+                        estado_atual.innerText = `${mapaTempo[dados.current.weather_code]}`
+
+
+                        const temp_max_atual=document.createElement('span');
+                        const temp_min_atual=document.createElement('span');
+                        temp_max_atual.id='temp_max_atual';
+                        temp_min_atual.id='temp_min_atual';
+                        temp_max_atual.innerText=`${dados.daily.temperature_2m_max[0]}`
+                        temp_min_atual.innerHTML=`<span>${dados.daily.temperature_2m_min[0]}</span><br>`
+
+                        const umidade_atual = document.createElement('span');
+                        const vento_atual = document.createElement('span');
+                        umidade_atual.id = 'umidade_atual';
+                        vento_atual.id = 'vento_atual'
+                        umidade_atual.innerText = `${dados.current.relative_humidity_2m}%`
+                        vento_atual.innerText = `${dados.current.wind_speed_10m} Km/h`
+   
+
+
+
+
+                        
+                        card_agora.appendChild(informacao_atual);
+                        card_agora.appendChild(temp_atual);
+                        card_agora.appendChild(celsius);
+                        card_agora.appendChild(estado_atual);
+                        card_agora.appendChild(temp_max_atual);
+                        card_agora.appendChild(temp_min_atual);
+                        card_agora.appendChild(umidade_atual);
+                        card_agora.appendChild(vento_atual);
+
+
+                        
 
                         // percorro o array de datas (time). Uso "item" pra pegar a data daquele dia,
                         // e "index" pra buscar a MESMA posição nos outros arrays paralelos
