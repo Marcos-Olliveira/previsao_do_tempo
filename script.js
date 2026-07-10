@@ -83,16 +83,15 @@
                         };
  
                        
-                        //capturo os elementos do html para posteriormente anexar novos elementos via appendchild
-                        const card_agora = document.getElementById('agora')
-                        
+                        //capturo o elemento html "informacao_atual" para posteriormente anexar novos elementos dinamicos
+                        const informacao_atual = document.getElementById('informacao_atual')                        
 
                         //crio um paragrafo
-                        const informacao_atual = document.createElement('p');
+                        const agora = document.createElement('p');
                         //adiciono um identificador para posterior estilização
-                        informacao_atual.id ='informacao_atual'
+                        agora.id ='informacao_atual'
                         //insriro o texto no paragráfo
-                        informacao_atual.innerText = "Agora"
+                        agora.innerText = "Agora"
 
                         // Crio duas spans
                         const temp_atual = document.createElement('span');
@@ -101,7 +100,7 @@
                         temp_atual.id='temp_atual'
                         celsius.id='celsius'
                         //insriro o texto de temperatura e o simbolo de graus celsius com a informação vinda da API                       
-                        temp_atual.innerText=`${dados.current.apparent_temperature}`
+                        temp_atual.innerText=`${dados.current.temperature_2m}`
                         celsius.innerText=`${dados.current_units.temperature_2m }`
 
                         //cria um paragrafo
@@ -131,15 +130,87 @@
                         umidade_atual.innerText = `${dados.current.relative_humidity_2m}%`
                         vento_atual.innerText = `${dados.current.wind_speed_10m} Km/h`
 
-                        //anexo os textos no objeto DOM
-                        card_agora.appendChild(informacao_atual);
-                        card_agora.appendChild(temp_atual);
-                        card_agora.appendChild(celsius);
-                        card_agora.appendChild(estado_atual);
-                        card_agora.appendChild(temp_max_atual);
-                        card_agora.appendChild(temp_min_atual);
-                        card_agora.appendChild(umidade_atual);
-                        card_agora.appendChild(vento_atual);
+                        // Anexo novos elementos no elemento "informacao_atual" no DOM                       
+                        informacao_atual.appendChild(agora);
+                        informacao_atual.appendChild(temp_atual);
+                        informacao_atual.appendChild(celsius);
+                        informacao_atual.appendChild(estado_atual);
+                        informacao_atual.appendChild(temp_max_atual);
+                        informacao_atual.appendChild(temp_min_atual);
+                        informacao_atual.appendChild(umidade_atual);
+                        informacao_atual.appendChild(vento_atual);
+
+
+                        //capturo o elemento html "informacao_atual" para posteriormente anexar novos elementos dinamicos
+                        const card_sensacao = document.getElementById('sensacao');
+                        
+                        //crio um paragrafo
+                        const sensacao_p = document.createElement('p');
+                        //adiciono um identificador para estiliza-lo posteriormente
+                        sensacao_p.id = 'sensacao_p';
+                        //atribuo um texto ao elemento criado
+                        sensacao_p.innerText = 'Sensação'
+
+                        //crio um paragrafo
+                        const sensacao_p2 = document.createElement('p');
+                        //adiciono um identificador para estiliza-lo posteriormente
+                        sensacao_p2.id = 'sensacao_p2'
+                        //atribuo um texto ao elemento criado
+                        sensacao_p2.innerText = `${dados.current.apparent_temperature}°`
+
+                        // Anexo novos elementos no elemento "sensacao" no DOM                       
+                        card_sensacao.appendChild(sensacao_p);
+                        card_sensacao.appendChild(sensacao_p2);
+
+
+
+                        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
                         
 
