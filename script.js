@@ -81,51 +81,57 @@
                             82: "Pancadas de chuva fortes",
                             95: "Trovoadas"
                         };
-
-                        //constantes que representarão os bocos principais no html 
-                        // const elementoDia = document.createElement('h3');
-                        //     elementoDia.classList.add('card-dia-semana');
-                        //     elementoDia.textContent = nomeDoDia;
-
-                        //seleciona o elemento gora no html
+ 
+                       
+                        //capturo os elementos do html para posteriormente anexar novos elementos via appendchild
                         const card_agora = document.getElementById('agora')
+                        
 
-                        //cria um paragrafo
+                        //crio um paragrafo
                         const informacao_atual = document.createElement('p');
+                        //adiciono um identificador para posterior estilização
                         informacao_atual.id ='informacao_atual'
+                        //insriro o texto no paragráfo
                         informacao_atual.innerText = "Agora"
 
+                        // Crio duas spans
                         const temp_atual = document.createElement('span');
                         const celsius = document.createElement('span');
+                        //adiciono os identificadores para posterior estilização
                         temp_atual.id='temp_atual'
-                        celsius.id='celsius'                       
+                        celsius.id='celsius'
+                        //insriro o texto de temperatura e o simbolo de graus celsius com a informação vinda da API                       
                         temp_atual.innerText=`${dados.current.apparent_temperature}`
-                        celsius.innerText=`${dados.current_units.temperature_2m }` 
+                        celsius.innerText=`${dados.current_units.temperature_2m }`
 
+                        //cria um paragrafo
                         const estado_atual = document.createElement('p')
+                        //adiciono um identificador para posterior estilização
                         estado_atual.id = 'estado_atual'
+                        //insiro o texto no paragrafo com a informação vinda da API
                         estado_atual.innerText = `${mapaTempo[dados.current.weather_code]}`
 
-
+                        // Crio duas spans
                         const temp_max_atual=document.createElement('span');
                         const temp_min_atual=document.createElement('span');
+                        //adiciono os identificadores para posterior estilização
                         temp_max_atual.id='temp_max_atual';
                         temp_min_atual.id='temp_min_atual';
+                        //insiro o texto de temperatura maxima e temperatura minima com as informações vindas da API
                         temp_max_atual.innerText=`${dados.daily.temperature_2m_max[0]}`
                         temp_min_atual.innerHTML=`<span>${dados.daily.temperature_2m_min[0]}</span><br>`
 
+                        //cria duas spans
                         const umidade_atual = document.createElement('span');
                         const vento_atual = document.createElement('span');
+                        //adiciono os identificadores para posterior estilização
                         umidade_atual.id = 'umidade_atual';
                         vento_atual.id = 'vento_atual'
+                        //insiro o texto umidade relativa e velocidade do vento com as informações vindas da API
                         umidade_atual.innerText = `${dados.current.relative_humidity_2m}%`
                         vento_atual.innerText = `${dados.current.wind_speed_10m} Km/h`
-   
 
-
-
-
-                        
+                        //anexo os textos no objeto DOM
                         card_agora.appendChild(informacao_atual);
                         card_agora.appendChild(temp_atual);
                         card_agora.appendChild(celsius);
@@ -134,7 +140,6 @@
                         card_agora.appendChild(temp_min_atual);
                         card_agora.appendChild(umidade_atual);
                         card_agora.appendChild(vento_atual);
-
 
                         
 
